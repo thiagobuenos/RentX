@@ -1,3 +1,1 @@
-import { createConnection } from "typeorm";
-
-createConnection();
+import { AppDataSource } from "../../dataSource";

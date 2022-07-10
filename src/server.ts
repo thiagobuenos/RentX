@@ -1,11 +1,11 @@
 import express from "express";
 import swaggerUi from "swagger-ui-express";
 
-import { ApppDataSource } from "../dataSource";
+import { AppDataSource } from "../dataSource";
 import { router } from "./routes";
 import swaggerFile from "./swagger.json";
 
-ApppDataSource.initialize().then(() => {
+AppDataSource.initialize().then(() => {
   const app = express();
 
   app.use(express.json());

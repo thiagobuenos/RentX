@@ -2,12 +2,11 @@
 
 **RF**
 Deve ser possivel cadastrar um novo carro
-Deve ser possivel listar todas as categorias
 
 **RN**
 Não deve ser possivel cadastrar um carro com uma placa ja existente
 Não deve ser possivel alterar a placa de um carro ja cadastrado
-O caro deve ser cadastrado com disponibilidade por padrao true
+O carro deve ser cadastrado com disponibilidade por padrao true
 Somente Admin pode fazer cadastro de carro
 
 # Listagem de Carros

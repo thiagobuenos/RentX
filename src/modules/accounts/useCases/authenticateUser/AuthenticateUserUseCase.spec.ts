@@ -29,7 +29,6 @@ describe("Authenticate User", () => {
       email: user.email,
       password: user.password,
     });
-    console.log(result);
     expect(result).toHaveProperty("token");
   });
 

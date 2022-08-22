@@ -39,7 +39,6 @@ describe("List Cars", () => {
     const cars = await listAvailableCarsUseCase.execute({
       brand: "Car_brand",
     });
-    console.log(cars);
   });
   it("should be able to list available cars by name", async () => {
     await carsRepositoryInMemory.create({
@@ -55,7 +54,6 @@ describe("List Cars", () => {
     const cars = await listAvailableCarsUseCase.execute({
       name: "Car6",
     });
-    console.log(cars);
   });
   it("should be able to list available cars by category_id", async () => {
     await carsRepositoryInMemory.create({
@@ -71,6 +69,5 @@ describe("List Cars", () => {
     const cars = await listAvailableCarsUseCase.execute({
       category_id: "1345",
     });
-    console.log(cars);
   });
 });

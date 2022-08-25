@@ -1,4 +1,4 @@
-import { Repository } from "typeorm";
+import { Repository, In } from "typeorm";
 
 import { AppDataSource } from "../../../../../../dataSource";
 import {
@@ -32,8 +32,9 @@ class SpecificationsRepository implements ISpecificationsRepository {
     return specification;
   }
 
-  findByIds(ids: string[]): Promise<Specification[]> {
-    throw new Error("Method not implemented.");
+  async findByIds(ids: string[]): Promise<Specification[]> {
+    const specifications = await this.repository.findBy({ id: In(ids) });
+    return specifications;
   }
 }
 

@@ -21,6 +21,7 @@ class CarsRepository implements ICarsRepository {
     fine_amount,
     license_plate,
     specifications,
+    id,
   }: ICreateCarDTO): Promise<Car> {
     const car = this.repository.create({
       name,
@@ -31,6 +32,7 @@ class CarsRepository implements ICarsRepository {
       fine_amount,
       license_plate,
       specifications,
+      id,
     });
     await this.repository.save(car);
     return car;

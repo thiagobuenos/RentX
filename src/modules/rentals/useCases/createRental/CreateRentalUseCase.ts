@@ -1,3 +1,4 @@
+import { IDateProvider } from "../../../../shared/container/providers/dateProvider/IDateProvider";
 import { AppError } from "../../../../shared/errors/AppError";
 import { Rental } from "../../infra/typeorm/entities/Rental";
 import { IRentalsRepository } from "../../repositories/IRentalsRepository";
@@ -7,9 +8,12 @@ interface IRequest {
   car_id: string;
   expected_return_date: Date;
 }
-
+const minimumHour = 24;
 class CreateRentalUseCase {
-  constructor(private rentalsRepository: IRentalsRepository) {}
+  constructor(
+    private rentalsRepository: IRentalsRepository,
+    private dateProvider: IDateProvider
+  ) {}
 
   async execute({
     car_id,
@@ -29,6 +33,16 @@ class CreateRentalUseCase {
 
     if (rentalOpenToUser) {
       throw new AppError("There's a rental in progress for this user ");
+    }
+
+    const dateNow = this.dateProvider.dateNow();
+    const compare = this.dateProvider.compareInHours(
+      expected_return_date,
+      dateNow
+    );
+
+    if (compare < minimumHour) {
+      throw new AppError("Date is lower");
     }
 
     const rental = await this.rentalsRepository.create({

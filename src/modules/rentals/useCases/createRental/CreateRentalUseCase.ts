@@ -37,12 +37,12 @@ class CreateRentalUseCase {
 
     const dateNow = this.dateProvider.dateNow();
     const compare = this.dateProvider.compareInHours(
-      expected_return_date,
-      dateNow
+      dateNow,
+      expected_return_date
     );
 
     if (compare < minimumHour) {
-      throw new AppError("Date is lower");
+      throw new AppError("invalid return time!");
     }
 
     const rental = await this.rentalsRepository.create({

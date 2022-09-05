@@ -5,7 +5,7 @@ import { ICreateRentalDTO } from "../../../dtos/ICreateRentalDTO";
 import { IRentalsRepository } from "../../../repositories/IRentalsRepository";
 import { Rental } from "../entities/Rental";
 
-class RentalRepository implements IRentalsRepository {
+class RentalsRepository implements IRentalsRepository {
   private repository: Repository<Rental>;
   constructor() {
     this.repository = AppDataSource.getRepository(Rental);
@@ -35,4 +35,4 @@ class RentalRepository implements IRentalsRepository {
   }
 }
 
-export { RentalRepository };
+export { RentalsRepository };

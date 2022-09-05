@@ -1,7 +1,11 @@
+import { Column, Entity, PrimaryColumn } from "typeorm";
 import { v4 as uuidV4 } from "uuid";
 
+@Entity("rentals")
 class Rental {
+  @PrimaryColumn()
   id: string;
+  @Column()
   car_id: string;
   user_id: string;
   start_date: Date;

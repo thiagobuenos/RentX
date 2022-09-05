@@ -7,6 +7,7 @@
     "dev": "ts-node-dev --inspect --transpile-only --ignore-watch node_modules --respawn ./src/shared/infra/http/server.ts",
     "migration:generate": "typeorm-ts-node-commonjs -d ./dataSource.ts migration:generate ./src/shared/infra/typeorm/migrations/",
     "migration:run": "typeorm-ts-node-commonjs -d ./dataSource.ts migration:run",
+    "migration:revert": "typeorm-ts-node-commonjs -d ./dataSource.ts migration:revert",
     "migration:create": "typeorm-ts-node-commonjs migration:create ",
     "test": "jest",
     "seed:admin": "ts-node-dev src/shared/infra/typeorm/seed/admin.ts"

@@ -11,12 +11,16 @@ class RentalsRepository implements IRentalsRepository {
     this.repository = AppDataSource.getRepository(Rental);
   }
 
-  async findOpenRentalByCar(car_id: string): Promise<Rental> {
-    const openByCar = this.repository.findOneBy({ car_id, end_date: null });
+  async findOpenRentalByCar(id: string): Promise<Rental> {
+    const openByCar = this.repository.findOne({
+      where: { car_id: id, end_date: null },
+    });
     return openByCar;
   }
-  async findOpenRentalByUser(user_id: string): Promise<Rental> {
-    const openByUser = this.repository.findOneBy({ user_id, end_date: null });
+  async findOpenRentalByUser(id: string): Promise<Rental> {
+    const openByUser = this.repository.findOne({
+      where: { user_id: id, end_date: null },
+    });
     return openByUser;
   }
   async create({

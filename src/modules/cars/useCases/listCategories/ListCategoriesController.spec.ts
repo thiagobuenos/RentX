@@ -23,6 +23,11 @@ describe("List CategoryController", () => {
   `);
   });
 
+  afterAll(async () => {
+    await conection.dropDatabase();
+    await conection.destroy();
+  });
+
   it("should be able to list all Category", async () => {
     const responseToken = await request(app).post("/sessions").send({
       email: "admin@rentx.com.br",
@@ -41,14 +46,10 @@ describe("List CategoryController", () => {
       });
 
     const response = await request(app).get("/categories");
+    console.log(response.body);
 
     expect(response.status).toBe(200);
     expect(response.body.length).toBe(1);
     expect(response.body[0]).toHaveProperty("id");
-  });
-
-  afterAll(async () => {
-    await conection.dropDatabase();
-    await conection.destroy();
   });
 });

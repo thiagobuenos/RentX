@@ -9,7 +9,7 @@
     "migration:run": "typeorm-ts-node-commonjs -d ./dataSource.ts migration:run",
     "migration:revert": "typeorm-ts-node-commonjs -d ./dataSource.ts migration:revert",
     "migration:create": "typeorm-ts-node-commonjs migration:create ",
-    "test": "NODE_ENV=test jest",
+    "test": "NODE_ENV=test jest --runInBand --detectOpenHandles",
     "seed:admin": "ts-node-dev src/shared/infra/typeorm/seed/admin.ts"
   },
   "dependencies": {

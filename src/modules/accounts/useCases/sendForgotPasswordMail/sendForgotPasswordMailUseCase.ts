@@ -1,7 +1,9 @@
+import { resolve } from "path";
 import { inject, injectable } from "tsyringe";
 import { v4 as uuidV4 } from "uuid";
 
-import { DayJsDateProvider } from "../../../../shared/container/providers/dateProvider/implementations/DayJsDateProvider";
+import { IDateProvider } from "../../../../shared/container/providers/dateProvider/IDateProvider";
+import { IMailProvider } from "../../../../shared/container/providers/mailProvider/IMailProvider";
 import { IUsersRepository } from "../../repositories/IUsersRepository";
 import { IUsersTokensRepository } from "../../repositories/IUsersTokensRepository";
 
@@ -13,10 +15,21 @@ class SendForgotPasswordMailUseCase {
     @inject("UsersTokensRepository")
     private usersTokensRepository: IUsersTokensRepository,
     @inject("DayJsDateProvider")
-    private dateProvider: DayJsDateProvider
+    private dateProvider: IDateProvider,
+    @inject("EtherealMaiProvider")
+    private maiProvider: IMailProvider
   ) {}
   async execute(email: string) {
     const user = await this.usersRepository.findByEmail(email);
+
+    const templatePath = resolve(
+      __dirname,
+      "..",
+      "..",
+      "views",
+      "emails",
+      "PasswordForgot.hbs"
+    );
 
     if (!user) {
       throw new Error("User not found");
@@ -31,6 +44,18 @@ class SendForgotPasswordMailUseCase {
       user_id: user.id,
       expires_date,
     });
+
+    const variables = {
+      name: user.name,
+      link: `${process.env.FORGOT_EMAIL_URL}${token}`,
+    };
+
+    await this.maiProvider.sendMail(
+      email,
+      "Recuperação de senha",
+      variables,
+      templatePath
+    );
   }
 }
 

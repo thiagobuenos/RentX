@@ -17,7 +17,7 @@ class SendForgotPasswordMailUseCase {
     @inject("DayJsDateProvider")
     private dateProvider: IDateProvider,
     @inject("EtherealMaiProvider")
-    private maiProvider: IMailProvider
+    private mailProvider: IMailProvider
   ) {}
   async execute(email: string) {
     const user = await this.usersRepository.findByEmail(email);
@@ -50,7 +50,7 @@ class SendForgotPasswordMailUseCase {
       link: `${process.env.FORGOT_EMAIL_URL}${token}`,
     };
 
-    await this.maiProvider.sendMail(
+    await this.mailProvider.sendMail(
       email,
       "Recuperação de senha",
       variables,

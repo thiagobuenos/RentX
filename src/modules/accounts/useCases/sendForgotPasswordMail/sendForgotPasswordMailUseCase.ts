@@ -4,6 +4,7 @@ import { v4 as uuidV4 } from "uuid";
 
 import { IDateProvider } from "../../../../shared/container/providers/dateProvider/IDateProvider";
 import { IMailProvider } from "../../../../shared/container/providers/mailProvider/IMailProvider";
+import { AppError } from "../../../../shared/errors/AppError";
 import { IUsersRepository } from "../../repositories/IUsersRepository";
 import { IUsersTokensRepository } from "../../repositories/IUsersTokensRepository";
 
@@ -32,7 +33,7 @@ class SendForgotPasswordMailUseCase {
     );
 
     if (!user) {
-      throw new Error("User not found");
+      throw new AppError("User not found");
     }
 
     const token = uuidV4();

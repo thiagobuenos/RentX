@@ -22,7 +22,7 @@ class S3StorageProvider implements IStorageProvider {
 
     await this.client
       .putObject({
-        Bucket: `${process.env.AWS_BUCKET_NAME}/${folder}}`,
+        Bucket: `${process.env.AWS_BUCKET_NAME}/${folder}`,
         Key: file,
         ACL: "public-read",
         Body: fileContent,

@@ -17,6 +17,10 @@ rentalsRoutes.post(
   ensureAuthenticated,
   devolutionRentalController.handle
 );
-rentalsRoutes.get("/user", ensureAuthenticated, listRentalsByUserController.handle);
+rentalsRoutes.get(
+  "/user",
+  ensureAuthenticated,
+  listRentalsByUserController.handle
+);
 
 export { rentalsRoutes };

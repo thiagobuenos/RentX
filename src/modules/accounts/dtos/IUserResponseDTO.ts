@@ -4,6 +4,7 @@ interface IUserResponseDTO {
   driver_license: string;
   id: string;
   avatar: string;
+  avatar_url(): string;
 }
 
 export { IUserResponseDTO };

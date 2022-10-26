@@ -1,4 +1,7 @@
 node_modules
 yarn.lock
-tmp
+tmp/*
 .env
+dist
+!tmp/.gitkeep
+

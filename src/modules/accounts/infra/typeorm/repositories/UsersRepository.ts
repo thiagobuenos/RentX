@@ -1,4 +1,4 @@
-import { Repository } from "typeorm";
+import { getRepository, Repository } from "typeorm";
 
 import { AppDataSource } from "../../../../../../dataSource";
 import { ICreateUserDTO } from "../../../dtos/ICreateUsersDTO";
@@ -9,7 +9,7 @@ class UsersRepository implements IUsersRepository {
   private repository: Repository<User>;
 
   constructor() {
-    this.repository = AppDataSource.getRepository(User);
+    this.repository = getRepository(User);
   }
 
   async create({

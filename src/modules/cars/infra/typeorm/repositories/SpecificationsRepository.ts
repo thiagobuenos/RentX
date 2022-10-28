@@ -1,4 +1,4 @@
-import { Repository, In } from "typeorm";
+import { Repository, In, getRepository } from "typeorm";
 
 import { AppDataSource } from "../../../../../../dataSource";
 import {
@@ -11,7 +11,7 @@ class SpecificationsRepository implements ISpecificationsRepository {
   private repository: Repository<Specification>;
 
   constructor() {
-    this.repository = AppDataSource.getRepository(Specification);
+    this.repository = getRepository(Specification);
   }
 
   async create({

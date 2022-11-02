@@ -4,7 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "build": "babel src --extensions \".js,.ts\" --out-dir dist --copy-files",
+    "build": "babel  src --extensions \".js,.ts\" --out-dir dist/src --copy-files \n babel  dataSource.ts --extensions \".js,.ts\" --out-dir dist --copy-files \n babel  .env --extensions \".js,.ts\" --out-dir dist/src/shared/infra/http --copy-files",
     "dev": "ts-node-dev --inspect --transpile-only --ignore-watch node_modules --respawn ./src/shared/infra/http/server.ts",
     "migration:generate": "typeorm-ts-node-commonjs -d ./dataSource.ts migration:generate ./src/shared/infra/typeorm/migrations/",
     "migration:run": "typeorm-ts-node-commonjs -d ./dataSource.ts migration:run",

@@ -21,7 +21,6 @@ AppDataSource.initialize().then(() => {
   app.use("/cars", express.static(`${upload.tmpFolder}/cars`));
 
   app.use(router);
-
   app.use(
     (err: Error, request: Request, response: Response, next: NextFunction) => {
       if (err instanceof AppError) {

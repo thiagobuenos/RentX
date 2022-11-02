@@ -1,3 +1,4 @@
+import "dotenv";
 import { container } from "tsyringe";
 
 import { LocalStorageProvider } from "./implementations/LocalStorageProvider";
